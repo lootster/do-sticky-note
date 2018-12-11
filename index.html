@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sticky Note Project</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div class="heading">
+    <h1>Sheldon's Sticky Note</h1>
+  </div>
+
+  <div>
+    <h3>Search note by title</h3>
+    <input type="text" id="sticky-note-filter" onkeyup="filterStickyNote()" placeholder="Search note by title" title="Type in a name">
+  </div>
+
+  <div>
+    <h3>Add a new sticky</h3>
+    <form class="add-sticky-note">
+      Title:<br>
+      <input id="newStickyNoteTitle" type="text" placeholder="Input title" />
+      <br>
+      Content:<br>
+      <textarea id="newStickyNoteContent" type="text" placeholder="Input Content"></textarea>
+      <br>
+      <button id="addStickyNote">Submit</button>
+    </form>
+  </div>
+
+  <div id="displayAllStickyNote"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
