@@ -5,4 +5,12 @@
   padding: 1em;
   margin: 1em;
   text-align: center;
+  overflow-wrap: break-word;
+  box-shadow: 5px 5px 5px grey;
+}
+
+#note-content {
+  background-color: #ffc;
+  border: none;
+  text-align: center;
 }

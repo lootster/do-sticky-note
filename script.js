@@ -1,31 +1,39 @@
-// document.getElementById("displayAllStickyNote").innerHTML = "";
-document.getElementById("displayAllStickyNote").style.display = "flex";
+function displayAll() {
+  var allStickyNote = window.localStorage;
 
-var allStickyNote = window.localStorage;
+  if (allStickyNote.length > 0) {
+    for (var eachStickyNote in allStickyNote) {
+      if (eachStickyNote.includes("id")) {
+        // console.log(eachStickyNote);
+        var note = JSON.parse(localStorage.getItem(eachStickyNote));
+        // console.log(parsedNote);
+        var stickyNote = document.createElement("div");
+        stickyNote.className = "note";
+        stickyNote.id = eachStickyNote.substring(8, 12);
+        // console.log(stickyNote.id);
+        stickyNote.innerHTML =
+          "<span>" +
+          "Sticky Id: " +
+          stickyNote.id +
+          "</span>" +
+          "<h3>" +
+          note["title"] +
+          "</h3>" +
+          `<textarea id="note-content">` +
+          note["content"] +
+          "</textarea>" +
+          "<br/>" +
+          `<button id="${eachStickyNote}">` +
+          "delete" +
+          "</button>";
 
-if (allStickyNote.length > 0) {
+        document.getElementById("displayAllStickyNote").appendChild(stickyNote);
 
-  for (var eachStickyNote in allStickyNote) {
-
-    if (eachStickyNote.includes("id")) {
-
-      parsedNote = JSON.parse(localStorage.getItem(eachStickyNote));
-      console.log(parsedNote);
-      var stickyNote = document.createElement("div");
-      stickyNote.className = "note";
-      stickyNote.id = eachStickyNote.substring(10);
-      stickyNote.innerHTML =
-        "<h3>" +
-        parsedNote["title"] +
-        "</h3><br><h4>" +
-        parsedNote["content"] +
-        "</h4>";
-      // stickyNote.addEventListener("click", focusNote);
-      document.getElementById("displayAllStickyNote").appendChild(stickyNote);
+        deleteStickyNote(eachStickyNote);
+      }
     }
   }
 }
-// }
 
 function addStickyNote() {
   var date = new Date();
@@ -43,9 +51,17 @@ function addStickyNote() {
   localStorage.setItem(stickyNoteId, JSON.stringify(stickyNote));
 }
 
-window.onload = function() {
-  // displayAllStickyNote();
+function deleteStickyNote(noteId) {
+  console.log(noteId);
+  document.getElementById(`${noteId}`).addEventListener("click", function() {
+    localStorage.removeItem(noteId);
+    document.location.reload(true);
+  });
+}
 
+window.onload = function() {
+  displayAll();
+  document.getElementById("displayAllStickyNote").style.display = "flex";
   document
     .getElementById("addStickyNote")
     .addEventListener("click", addStickyNote);
