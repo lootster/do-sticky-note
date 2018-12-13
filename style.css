@@ -9,7 +9,15 @@
   box-shadow: 5px 5px 5px grey;
 }
 
-#note-content {
+.title {
+  max-width: 100%;
+  background-color: #ffc;
+  border: none;
+  text-align: center;
+}
+
+.content {
+  max-width: 100%;
   background-color: #ffc;
   border: none;
   text-align: center;

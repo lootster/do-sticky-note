@@ -12,24 +12,28 @@ function displayAll() {
         stickyNote.id = eachStickyNote.substring(8, 12);
         // console.log(stickyNote.id);
         stickyNote.innerHTML =
-          "<span>" +
+          "<h5>" +
           "Sticky Id: " +
           stickyNote.id +
-          "</span>" +
-          "<h3>" +
+          "</h5>" +
+          `<textarea class="title" id="title${eachStickyNote}">` +
           note["title"] +
-          "</h3>" +
-          `<textarea id="note-content">` +
+          "</textarea>" +
+          `<textarea class="content" id="content${eachStickyNote}">` +
           note["content"] +
           "</textarea>" +
           "<br/>" +
           `<button id="${eachStickyNote}">` +
-          "delete" +
+          "Delete" +
+          "</button>" +
+          `<button id="edit${eachStickyNote}">` +
+          "Edit" +
           "</button>";
 
         document.getElementById("displayAllStickyNote").appendChild(stickyNote);
 
         deleteStickyNote(eachStickyNote);
+        // editStickyNote(eachStickyNote);
       }
     }
   }
@@ -43,21 +47,34 @@ function addStickyNote() {
   var stickyNoteId = "id" + Date.parse(date);
 
   var stickyNote = {
-    date: stickyNoteDate,
-    title: stickyNoteTitle,
-    content: stickyNoteContent
+    "date": stickyNoteDate,
+    "title": stickyNoteTitle,
+    "content": stickyNoteContent
   };
 
   localStorage.setItem(stickyNoteId, JSON.stringify(stickyNote));
 }
 
 function deleteStickyNote(noteId) {
-  console.log(noteId);
   document.getElementById(`${noteId}`).addEventListener("click", function() {
     localStorage.removeItem(noteId);
     document.location.reload(true);
   });
 }
+
+// function editStickyNote(noteId) {
+//   console.log(noteId)
+//   console.log(`edit${noteId}`)
+//   document.getElementById(`edit${nodeId}`).addEventListener("click", function() {
+//     var editNoteTitle = document.getElementById(`title${noteId}`).value;
+//     var editNoteContent = document.getElementById(`content${noteId}`).value;
+//     var editStickyNote = {
+//       "title": editNoteTitle,
+//       "content": editNoteContent
+//     };
+//     localStorage[noteId] = JSON.stringify(editStickyNote);
+//   });
+// }
 
 window.onload = function() {
   displayAll();
