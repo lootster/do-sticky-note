@@ -1,7 +1,12 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .note {
-  width: 25%;
-  height: 70%;
-  background-color: #ffc;
+  width: 240px;
+  background-color: #ffd;
   padding: 1em;
   margin: 1em;
   text-align: center;
@@ -11,14 +16,14 @@
 
 .title {
   max-width: 100%;
-  background-color: #ffc;
+  background-color: #ffd;
   border: none;
   text-align: center;
 }
 
 .content {
   max-width: 100%;
-  background-color: #ffc;
+  background-color: #ffd;
   border: none;
   text-align: center;
 }
