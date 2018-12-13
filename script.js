@@ -13,7 +13,7 @@ function displayAll() {
         document.getElementById("displayAllStickyNote").appendChild(stickyNote);
 
         deleteStickyNote(eachNoteId);
-        // editStickyNote(eachStickyNote);
+        editStickyNote(eachNoteId);
       }
     }
   }
@@ -76,19 +76,19 @@ function deleteStickyNote(noteId) {
   });
 }
 
-// function editStickyNote(noteId) {
-//   console.log(noteId)
-//   console.log(`edit${noteId}`)
-//   document.getElementById(`edit${nodeId}`).addEventListener("click", function() {
-//     var editNoteTitle = document.getElementById(`title${noteId}`).value;
-//     var editNoteContent = document.getElementById(`content${noteId}`).value;
-//     var editStickyNote = {
-//       "title": editNoteTitle,
-//       "content": editNoteContent
-//     };
-//     localStorage[noteId] = JSON.stringify(editStickyNote);
-//   });
-// }
+function editStickyNote(noteId) {
+  console.log(noteId)
+  console.log(`edit${noteId}`)
+  document.getElementById(`edit${noteId}`).addEventListener("click", function() {
+    var editNoteTitle = document.getElementById(`title${noteId}`).value;
+    var editNoteContent = document.getElementById(`content${noteId}`).value;
+    var editStickyNote = {
+      "title": editNoteTitle,
+      "content": editNoteContent
+    };
+    localStorage[noteId] = JSON.stringify(editStickyNote);
+  });
+}
 
 window.onload = function() {
   displayAll();
