@@ -1,7 +1,7 @@
 function displayAll() {
   var allStickyNote = window.localStorage;
 
-  if (allStickyNote.length >= 0) {
+  // if (allStickyNote.length >= 0) {
     clearAllNotes();
     for (var eachNoteId in allStickyNote) {
       if (eachNoteId.includes("id")) {
@@ -16,7 +16,7 @@ function displayAll() {
         editStickyNote(eachNoteId);
       }
     }
-  }
+  // }
 }
 
 function clearAllNotes() {
@@ -33,7 +33,7 @@ function generateNoteHtml(noteId, note) {
     "<h5>" +
     "Id: " +
     stickyNote.id +
-    "</h5>" + 
+    "</h5>" +
     `<textarea class="title" id="title${noteId}">` +
     note["title"] +
     "</textarea>" +
@@ -78,18 +78,20 @@ function deleteStickyNote(noteId) {
 
 function editStickyNote(noteId) {
   var note = JSON.parse(localStorage.getItem(noteId));
-  var date = note.date
+  var date = note.date;
   console.log(date);
-  document.getElementById(`edit${noteId}`).addEventListener("click", function() {
-    var editNoteTitle = document.getElementById(`title${noteId}`).value;
-    var editNoteContent = document.getElementById(`content${noteId}`).value;
-    var editStickyNote = {
-      "date": date,
-      "title": editNoteTitle,
-      "content": editNoteContent
-    };
-    localStorage[noteId] = JSON.stringify(editStickyNote);
-  });
+  document
+    .getElementById(`edit${noteId}`)
+    .addEventListener("click", function() {
+      var editNoteTitle = document.getElementById(`title${noteId}`).value;
+      var editNoteContent = document.getElementById(`content${noteId}`).value;
+      var editStickyNote = {
+        date: date,
+        title: editNoteTitle,
+        content: editNoteContent
+      };
+      localStorage[noteId] = JSON.stringify(editStickyNote);
+    });
 }
 
 window.onload = function() {
