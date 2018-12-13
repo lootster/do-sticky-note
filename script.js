@@ -28,12 +28,12 @@ function generateNoteHtml(noteId, note) {
   var stickyNote = document.createElement("div");
   stickyNote.className = "note";
   stickyNote.id = noteId.substring(8, 12);
-  // console.log(stickyNote.id);
+  console.log(stickyNote.id);
   stickyNote.innerHTML =
     "<h5>" +
-    "Sticky Id: " +
+    "Id: " +
     stickyNote.id +
-    "</h5>" +
+    "</h5>" + 
     `<textarea class="title" id="title${noteId}">` +
     note["title"] +
     "</textarea>" +
@@ -45,7 +45,7 @@ function generateNoteHtml(noteId, note) {
     "Delete" +
     "</button>" +
     `<button id="edit${noteId}">` +
-    "Edit" +
+    "Update Content" +
     "</button>";
   return stickyNote;
 }
@@ -77,12 +77,14 @@ function deleteStickyNote(noteId) {
 }
 
 function editStickyNote(noteId) {
-  console.log(noteId)
-  console.log(`edit${noteId}`)
+  var note = JSON.parse(localStorage.getItem(noteId));
+  var date = note.date
+  console.log(date);
   document.getElementById(`edit${noteId}`).addEventListener("click", function() {
     var editNoteTitle = document.getElementById(`title${noteId}`).value;
     var editNoteContent = document.getElementById(`content${noteId}`).value;
     var editStickyNote = {
+      "date": date,
       "title": editNoteTitle,
       "content": editNoteContent
     };
