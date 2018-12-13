@@ -1,11 +1,11 @@
 function displayAll() {
   var allStickyNote = window.localStorage;
+
   clearAllNotes();
+
   for (var eachNoteId in allStickyNote) {
     if (eachNoteId.includes("id")) {
-      // console.log(eachNoteId);
       var eachNote = JSON.parse(localStorage.getItem(eachNoteId));
-      // console.log(eachNote);
       var stickyNote = generateNoteHtml(eachNoteId, eachNote);
       document.getElementById("displayAllStickyNote").appendChild(stickyNote);
       deleteStickyNote(eachNoteId);
@@ -22,26 +22,24 @@ function clearAllNotes() {
 function generateNoteHtml(noteId, note) {
   var stickyNote = document.createElement("div");
   stickyNote.className = "note";
-  stickyNote.id = noteId.substring(8, 12);
-  // console.log(stickyNote.id);
   stickyNote.innerHTML =
-    "<div>" +
+    "<strong>" +
     "Title:" +
-    "</div>" +
+    "</strong>" +
     `<textarea rows="2" cols="50" class="title" id="title${noteId}" >` +
     note["title"] +
     "</textarea>" +
-    "<div>" +
+    "<strong>" +
     "Content:" +
-    "</div>" +
-    `<textarea rows="8" cols="50" class="content" id="content${noteId}">` +
+    "</strong>" +
+    `<textarea rows="3" cols="50" class="content" id="content${noteId}">` +
     note["content"] +
     "</textarea>" +
     "<br/>" +
-    `<button id="${noteId}">` +
+    `<button id="${noteId}" class="btn btn-danger">` +
     "Delete" +
     "</button>" +
-    `<button id="edit${noteId}">` +
+    `<button id="edit${noteId}" class="btn btn-secondary">` +
     "Edit" +
     "</button>";
   return stickyNote;
@@ -76,12 +74,12 @@ function deleteStickyNote(noteId) {
 function editStickyNote(noteId) {
   var note = JSON.parse(localStorage.getItem(noteId));
   var date = note.date;
-  // console.log(date);
+
   document
     .getElementById(`edit${noteId}`)
     .addEventListener("click", function() {
       var editButtonText = document.getElementById(`edit${noteId}`).innerText;
-      // console.log(editButtonText);
+
       // toggle background and "Edit" button
       document.getElementById(`edit${noteId}`).innerText =
         editButtonText === "Edit" ? "Save" : "Edit";
@@ -101,7 +99,22 @@ function editStickyNote(noteId) {
     });
 }
 
+function filterStickyNote() {
+  var input = document.getElementById("sticky-note-filter");
+  var filter = input.value.toLowerCase();
 
+  var container = document.getElementById("displayAllStickyNote");
+  var div = container.getElementsByTagName("div");
+
+  for (var i = 0; i < div.length; i++) {
+    var title = div[i].getElementsByClassName("title")[0].value;
+    if (title.toLowerCase().indexOf(filter) > -1) {
+      div[i].style.display = "";
+    } else {
+      div[i].style.display = "none";
+    }
+  }
+}
 
 window.onload = function() {
   displayAll();

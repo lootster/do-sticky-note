@@ -1,17 +1,31 @@
+body {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/ad/Cork.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heading, .search{
+  text-align: center;
+  color: white;
+  font-size: 1.2em
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .note {
-  width: 240px;
+  width: 255px;
   background-color: #ffd;
-  padding: 1em;
-  margin: 1em;
+  padding:0.5em;
+  margin: 0.5em;
   text-align: center;
   overflow-wrap: break-word;
   box-shadow: 5px 5px 5px grey;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem
 }
 
 .title {
@@ -26,4 +40,8 @@
   background-color: #ffd;
   border: none;
   text-align: center;
+}
+
+button {
+  margin: 2px !important;
 }

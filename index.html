@@ -7,28 +7,33 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Sticky Note Project</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
 </head>
 
 <body>
   <div class="heading">
-    <h1>Sheldon's Sticky Note</h1>
-  </div>
-
-  <div>
-    <h3>Search note by title</h3>
+    <br>
+    <strong>Search note by title:</strong>
     <input type="text" id="sticky-note-filter" onkeyup="filterStickyNote()" placeholder="Search note by title" title="Type in a name">
   </div>
 
-  <div>
-    <h3>Add a new sticky</h3>
-    <form onsubmit="event.preventDefault()"  class="add-sticky-note">
-      Title:<br>
-      <input id="newStickyNoteTitle" type="text" placeholder="Input title" />
+  <div class="search">
+    <br>
+    <h3>Add a new sticky note</h3>
+    <form onsubmit="event.preventDefault()" class="add-sticky-note">
+      <strong>
+        Title:<br>
+      </strong>
+      <input id="newStickyNoteTitle" type="text" placeholder="Type your title here" />
       <br>
-      Content:<br>
-      <textarea id="newStickyNoteContent" type="text" placeholder="Input Content"></textarea>
+      <strong>
+        Content:<br>
+      </strong>
+      <textarea rows="2" cols="24" id="newStickyNoteContent" type="text" placeholder="Type your content here"></textarea>
       <br>
-      <button id="addStickyNote">Add new note</button>
+      <button id="addStickyNote" class="btn btn-primary">Create Note</button>
     </form>
   </div>
 
