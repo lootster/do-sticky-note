@@ -1,42 +1,53 @@
 function displayAll() {
   var allStickyNote = window.localStorage;
 
-  if (allStickyNote.length > 0) {
-    for (var eachStickyNote in allStickyNote) {
-      if (eachStickyNote.includes("id")) {
-        // console.log(eachStickyNote);
-        var note = JSON.parse(localStorage.getItem(eachStickyNote));
-        // console.log(parsedNote);
-        var stickyNote = document.createElement("div");
-        stickyNote.className = "note";
-        stickyNote.id = eachStickyNote.substring(8, 12);
-        // console.log(stickyNote.id);
-        stickyNote.innerHTML =
-          "<h5>" +
-          "Sticky Id: " +
-          stickyNote.id +
-          "</h5>" +
-          `<textarea class="title" id="title${eachStickyNote}">` +
-          note["title"] +
-          "</textarea>" +
-          `<textarea class="content" id="content${eachStickyNote}">` +
-          note["content"] +
-          "</textarea>" +
-          "<br/>" +
-          `<button id="${eachStickyNote}">` +
-          "Delete" +
-          "</button>" +
-          `<button id="edit${eachStickyNote}">` +
-          "Edit" +
-          "</button>";
+  if (allStickyNote.length >= 0) {
+    clearAllNotes();
+    for (var eachNoteId in allStickyNote) {
+      if (eachNoteId.includes("id")) {
+        console.log(eachNoteId);
+        var eachNote = JSON.parse(localStorage.getItem(eachNoteId));
+        console.log(eachNote);
+        var stickyNote = generateNoteHtml(eachNoteId, eachNote);
 
         document.getElementById("displayAllStickyNote").appendChild(stickyNote);
 
-        deleteStickyNote(eachStickyNote);
+        deleteStickyNote(eachNoteId);
         // editStickyNote(eachStickyNote);
       }
     }
   }
+}
+
+function clearAllNotes() {
+  var notesList = document.getElementById("displayAllStickyNote");
+  notesList.innerHTML = "";
+}
+
+function generateNoteHtml(noteId, note) {
+  var stickyNote = document.createElement("div");
+  stickyNote.className = "note";
+  stickyNote.id = noteId.substring(8, 12);
+  // console.log(stickyNote.id);
+  stickyNote.innerHTML =
+    "<h5>" +
+    "Sticky Id: " +
+    stickyNote.id +
+    "</h5>" +
+    `<textarea class="title" id="title${noteId}">` +
+    note["title"] +
+    "</textarea>" +
+    `<textarea class="content" id="content${noteId}">` +
+    note["content"] +
+    "</textarea>" +
+    "<br/>" +
+    `<button id="${noteId}">` +
+    "Delete" +
+    "</button>" +
+    `<button id="edit${noteId}">` +
+    "Edit" +
+    "</button>";
+  return stickyNote;
 }
 
 function addStickyNote() {
@@ -47,18 +58,21 @@ function addStickyNote() {
   var stickyNoteId = "id" + Date.parse(date);
 
   var stickyNote = {
-    "date": stickyNoteDate,
-    "title": stickyNoteTitle,
-    "content": stickyNoteContent
+    date: stickyNoteDate,
+    title: stickyNoteTitle,
+    content: stickyNoteContent
   };
 
   localStorage.setItem(stickyNoteId, JSON.stringify(stickyNote));
+  document.getElementById("newStickyNoteTitle").value = "";
+  document.getElementById("newStickyNoteContent").value = "";
+  displayAll();
 }
 
 function deleteStickyNote(noteId) {
   document.getElementById(`${noteId}`).addEventListener("click", function() {
     localStorage.removeItem(noteId);
-    document.location.reload(true);
+    displayAll();
   });
 }
 
