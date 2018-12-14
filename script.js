@@ -39,7 +39,7 @@ function generateNoteHtml(noteId, note) {
     `<button id="${noteId}" class="btn btn-danger">` +
     "Delete" +
     "</button>" +
-    `<button id="edit${noteId}" class="btn btn-secondary">` +
+    `<button id="edit${noteId}" class="btn btn-primary">` +
     "Edit" +
     "</button>";
   return stickyNote;
@@ -108,11 +108,9 @@ function filterStickyNote() {
 
   for (var i = 0; i < div.length; i++) {
     var title = div[i].getElementsByClassName("title")[0].value;
-    if (title.toLowerCase().indexOf(filter) > -1) {
-      div[i].style.display = "";
-    } else {
-      div[i].style.display = "none";
-    }
+    title.toLowerCase().indexOf(filter) > -1
+      ? div[i].style.display = ""
+      : div[i].style.display = "none";
   }
 }
 

@@ -18,7 +18,7 @@ body {
 
 .note {
   width: 255px;
-  background-color: #ffd;
+  background-color: #fdff8a;
   padding:0.5em;
   margin: 0.5em;
   text-align: center;
@@ -30,14 +30,14 @@ body {
 
 .title {
   max-width: 100%;
-  background-color: #ffd;
+  background-color: #fdff8a;
   border: none;
   text-align: center;
 }
 
 .content {
   max-width: 100%;
-  background-color: #ffd;
+  background-color: #fdff8a;
   border: none;
   text-align: center;
 }
