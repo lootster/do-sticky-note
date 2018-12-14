@@ -1,6 +1,5 @@
 function displayAll() {
   var allStickyNote = window.localStorage;
-
   clearAllNotes();
 
   for (var eachNoteId in allStickyNote) {
@@ -26,7 +25,7 @@ function generateNoteHtml(noteId, note) {
     "<strong>" +
     "Title:" +
     "</strong>" +
-    `<textarea rows="2" cols="50" class="title" id="title${noteId}" >` +
+    `<textarea rows="1" cols="50" class="title" id="title${noteId}" >` +
     note["title"] +
     "</textarea>" +
     "<strong>" +
@@ -36,10 +35,10 @@ function generateNoteHtml(noteId, note) {
     note["content"] +
     "</textarea>" +
     "<br/>" +
-    `<button id="${noteId}" class="btn btn-danger">` +
+    `<button id="${noteId}" class="btn btn-light">` +
     "Delete" +
     "</button>" +
-    `<button id="edit${noteId}" class="btn btn-primary">` +
+    `<button id="edit${noteId}" class="btn btn-light">` +
     "Edit" +
     "</button>";
   return stickyNote;
@@ -74,13 +73,12 @@ function deleteStickyNote(noteId) {
 function editStickyNote(noteId) {
   var note = JSON.parse(localStorage.getItem(noteId));
   var date = note.date;
-
   document
     .getElementById(`edit${noteId}`)
     .addEventListener("click", function() {
       var editButtonText = document.getElementById(`edit${noteId}`).innerText;
 
-      // toggle background and "Edit" button
+      // toggle background of input field and button's name (Edit/Save)
       document.getElementById(`edit${noteId}`).innerText =
         editButtonText === "Edit" ? "Save" : "Edit";
       document.getElementById(`title${noteId}`).style.backgroundColor =

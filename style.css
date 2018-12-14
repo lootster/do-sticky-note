@@ -1,5 +1,5 @@
 body {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/ad/Cork.jpg");
+  background-image: url("https://cdn.hipwallpaper.com/i/11/8/P2QVC1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -8,6 +8,10 @@ body {
   text-align: center;
   color: white;
   font-size: 1.2em
+}
+
+input, textarea {
+  text-align: center;
 }
 
 .container {
@@ -28,18 +32,10 @@ body {
   font-size: 1.2rem
 }
 
-.title {
+.title, .content {
   max-width: 100%;
   background-color: #fdff8a;
   border: none;
-  text-align: center;
-}
-
-.content {
-  max-width: 100%;
-  background-color: #fdff8a;
-  border: none;
-  text-align: center;
 }
 
 button {
