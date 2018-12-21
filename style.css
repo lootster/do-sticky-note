@@ -38,6 +38,10 @@ input, textarea {
   border: none;
 }
 
-button {
-  margin: 2px !important;
+.btn {
+  margin: 1px 5px ;
+}
+
+#addStickyNote {
+  margin: 15px;
 }

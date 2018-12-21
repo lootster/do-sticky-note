@@ -1,3 +1,5 @@
+"use strict";
+
 function displayAll() {
   var allStickyNote = window.localStorage;
   clearAllNotes();
@@ -7,8 +9,8 @@ function displayAll() {
       var eachNote = JSON.parse(localStorage.getItem(eachNoteId));
       var stickyNote = generateNoteHtml(eachNoteId, eachNote);
       document.getElementById("displayAllStickyNote").appendChild(stickyNote);
-      deleteStickyNote(eachNoteId);
-      editStickyNote(eachNoteId);
+      addListenerToDeleteNote(eachNoteId);
+      addListenerToEditNode(eachNoteId);
     }
   }
 }
@@ -63,14 +65,14 @@ function addStickyNote() {
   displayAll();
 }
 
-function deleteStickyNote(noteId) {
+function addListenerToDeleteNote(noteId) {
   document.getElementById(`${noteId}`).addEventListener("click", function() {
     localStorage.removeItem(noteId);
     displayAll();
   });
 }
 
-function editStickyNote(noteId) {
+function addListenerToEditNode(noteId) {
   var note = JSON.parse(localStorage.getItem(noteId));
   var date = note.date;
   document
@@ -88,12 +90,12 @@ function editStickyNote(noteId) {
 
       var editNoteTitle = document.getElementById(`title${noteId}`).value;
       var editNoteContent = document.getElementById(`content${noteId}`).value;
-      var editStickyNote = {
+      var addListenerToEditNode = {
         date: date,
         title: editNoteTitle,
         content: editNoteContent
       };
-      localStorage[noteId] = JSON.stringify(editStickyNote);
+      localStorage[noteId] = JSON.stringify(addListenerToEditNode);
     });
 }
 
